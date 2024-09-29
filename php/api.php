@@ -50,51 +50,59 @@ switch ($method) {
 
 function handleGet($mysqli)
 {
-    $category_id = isset($_GET['id']) ? intval($_GET['id']) : null;
+    $table = isset($_GET['table']) ? $_GET['table'] : null;
+    $id = isset($_GET['id']) ? intval($_GET['id']) : null;
 
-    if ($category_id) {
-        $stmt = $mysqli->prepare("SELECT * FROM category WHERE category_id = ? AND isDeleted = 0");
-        $stmt->bind_param("i", $category_id);
+    if ($table && $id) {
+        $stmt = $mysqli->prepare("SELECT * FROM $table WHERE ID_{$table} = ?");
+        $stmt->bind_param("i", $id);
     } else {
-        $stmt = $mysqli->prepare("SELECT * FROM category WHERE isDeleted = 0");
+        $stmt = $mysqli->prepare("SELECT * FROM $table");
     }
 
     $stmt->execute();
     $result = $stmt->get_result();
-    $categories = $result->fetch_all(MYSQLI_ASSOC);
-    echo json_encode($categories);
+    $records = $result->fetch_all(MYSQLI_ASSOC);
+    echo json_encode($records);
 }
 
 function handlePost($mysqli)
 {
     $data = json_decode(file_get_contents("php://input"), true);
+    $table = isset($_GET['table']) ? $_GET['table'] : null;
 
-    if (!empty($data['name'])) {
-        $stmt = $mysqli->prepare("INSERT INTO category (name, isDeleted) VALUES (?,0)");
-        $stmt->bind_param("s", $data['name']);
+    if ($table) {
+        switch ($table) {
+            case 'Alumnos':
+                $stmt = $mysqli->prepare("INSERT INTO Alumnos (ID_Persona, Semestre, MateriasVencidas, Puntaje) VALUES (?, ?, ?, ?)");
+                $stmt->bind_param("iiii", $data['ID_Persona'], $data['Semestre'], $data['MateriasVencidas'], $data['Puntaje']);
+                break;
+            // Repite esto para cada tabla relevante.
+        }
 
         if ($stmt->execute()) {
-            echo json_encode(["message" => "Categoría creada exitosamente"]);
+            echo json_encode(["message" => "$table creado exitosamente"]);
         } else {
-            echo json_encode(["message" => "Error al crear la categoría"]);
+            echo json_encode(["message" => "Error al crear en $table"]);
         }
     } else {
-        echo json_encode(["message" => "Datos incompletos"]);
+        echo json_encode(["message" => "Tabla no proporcionada"]);
     }
 }
 
 function handlePatch($mysqli)
 {
     $data = json_decode(file_get_contents("php://input"), true);
+    $table = isset($_GET['table']) ? $_GET['table'] : null;
 
-    if (!empty($data['id']) && !empty($data['name'])) {
-        $stmt = $mysqli->prepare("UPDATE category SET name = ? WHERE category_id = ?");
+    if ($table && !empty($data['id'])) {
+        $stmt = $mysqli->prepare("UPDATE $table SET name = ? WHERE ID_{$table} = ?");
         $stmt->bind_param("si", $data['name'], $data['id']);
 
         if ($stmt->execute()) {
-            echo json_encode(["message" => "Categoría actualizada exitosamente"]);
+            echo json_encode(["message" => "$table actualizado exitosamente"]);
         } else {
-            echo json_encode(["message" => "Error al actualizar la categoría"]);
+            echo json_encode(["message" => "Error al actualizar en $table"]);
         }
     } else {
         echo json_encode(["message" => "Datos incompletos"]);
@@ -104,17 +112,19 @@ function handlePatch($mysqli)
 function handleDelete($mysqli)
 {
     $data = json_decode(file_get_contents("php://input"), true);
+    $table = isset($_GET['table']) ? $_GET['table'] : null;
 
-    if (!empty($data['id'])) {
-        $stmt = $mysqli->prepare("UPDATE category SET isDeleted = 1 WHERE category_id = ?");
+    if ($table && !empty($data['id'])) {
+        $stmt = $mysqli->prepare("DELETE FROM $table WHERE ID_{$table} = ?");
         $stmt->bind_param("i", $data['id']);
 
         if ($stmt->execute()) {
-            echo json_encode(["message" => "Categoría eliminada exitosamente"]);
+            echo json_encode(["message" => "$table eliminado exitosamente"]);
         } else {
-            echo json_encode(["message" => "Error al eliminar la categoría"]);
+            echo json_encode(["message" => "Error al eliminar en $table"]);
         }
     } else {
         echo json_encode(["message" => "ID no proporcionado"]);
     }
 }
+?>
