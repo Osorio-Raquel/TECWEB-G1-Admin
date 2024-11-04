@@ -1,5 +1,7 @@
 {
   "dependencies": {
-    "vue-router": "^4.4.5"
+    "@lottiefiles/vue-lottie-player": "^1.1.0",
+    "vue-router": "^4.4.5",
+    "vue-youtube-embed": "^2.2.2"
   }
 }

@@ -5,120 +5,18 @@
       <v-toolbar-title>Carrera de Administración de Empresas</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-tabs v-model="tab" align-with-title color="cyan">
-        <v-tab @click="goToHome">INICIO</v-tab>
-        <v-tab @click="goToAbout">SOBRE LA CARRERA</v-tab>
-        <v-tab @click="goToSubjects">OFERTA DE MATERIAS</v-tab>
-        <v-tab @click="goToResources">RECURSOS</v-tab>
-        <v-tab @click="goToForum">FORO</v-tab>
-        <v-tab @click="goToTumascora">TUMASCORA</v-tab>
+        <v-tab @click="currentComponent = 'HomePage'">INICIO</v-tab>
+        <v-tab @click="currentComponent = 'AboutCarrer'">SOBRE LA CARRERA</v-tab>
+        <v-tab @click="currentComponent = 'SubjectsList'">OFERTA DE MATERIAS</v-tab>
+        <v-tab @click="currentComponent = 'ResourcesList'">RECURSOS</v-tab>
+        <v-tab @click="currentComponent = 'ForumChat'">FORO</v-tab>
+        <v-tab @click="currentComponent = 'TuMascoraVir'">TUMASCORA</v-tab>
       </v-tabs>
     </v-app-bar>
 
+    <!-- Contenido dinámico de la pestaña -->
     <v-container>
-      <v-row>
-        <v-col cols="12">
-          <v-divider></v-divider>
-          <v-tabs-items v-model="tab">
-            <v-tab-item>
-              <v-card>
-                <v-card-title class="headline text-primary">Inicio</v-card-title>
-                <v-card-text>
-                  <p class="animated fadeIn">Bienvenido a la Carrera de Administración de Empresas.</p>
-                </v-card-text>
-              </v-card>
-            </v-tab-item>
-            <v-tab-item>
-              <v-card>
-                <v-card-title class="headline text-primary">Sobre la Carrera</v-card-title>
-                <v-card-text>
-                  <v-carousel hide-delimiter-background>
-                    <v-carousel-item v-for="(image, index) in carouselImages" :key="index">
-                      <v-img :src="image.src" :alt="image.alt"></v-img>
-                    </v-carousel-item>
-                  </v-carousel>
-
-                  <!-- Reloj -->
-                  <v-card class="my-5" color="cyan" dark>
-                    <v-card-title class="headline">Reloj Actual</v-card-title>
-                    <v-card-text>
-                      <v-timer :value="time" format="HH:mm:ss" />
-                    </v-card-text>
-                  </v-card>
-
-                  <!-- Información sobre la carrera -->
-                  <v-card class="mx-auto my-5" max-width="800">
-                    <v-card-title class="headline text-primary">Sobre la Carrera</v-card-title>
-                    <v-card-text>
-                      <p class="animated slideInLeft">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                      </p>
-                      <v-divider></v-divider>
-                      <v-card class="mx-2 my-2" v-for="(info, index) in infoCards" :key="index" flat>
-                        <v-card-title>{{ info.title }}</v-card-title>
-                        <v-card-text>{{ info.content }}</v-card-text>
-                        <v-card-actions>
-                          <v-btn @click="info.show = !info.show">{{ info.show ? 'Ocultar' : 'Mostrar' }}</v-btn>
-                        </v-card-actions>
-                        <v-expand-transition>
-                          <v-card-text v-if="info.show">
-                            {{ info.details }}
-                          </v-card-text>
-                        </v-expand-transition>
-                      </v-card>
-                      <v-divider></v-divider>
-                      <v-img
-                        src="https://via.placeholder.com/600x300?text=Imagen+de+Administracion"
-                        class="my-4 animated fadeIn"
-                        max-height="300"
-                        contain
-                      ></v-img>
-                      <p class="animated bounceIn">
-                        Quisque volutpat condimentum vel, eu hendrerit nunc. Proin nec sapien eget erat sodales convallis. Aenean sed magna sed nisl laoreet euismod.
-                      </p>
-                    </v-card-text>
-                  </v-card>
-                </v-card-text>
-              </v-card>
-            </v-tab-item>
-            <v-tab-item>
-              <v-card>
-                <v-card-title class="headline text-primary">Oferta de Materias</v-card-title>
-                <v-card-text>
-                  <p class="animated fadeIn">Aquí se mostrarán las materias disponibles en la carrera.</p>
-                  <!-- Agrega contenido sobre la oferta de materias aquí -->
-                </v-card-text>
-              </v-card>
-            </v-tab-item>
-            <v-tab-item>
-              <v-card>
-                <v-card-title class="headline text-primary">Recursos</v-card-title>
-                <v-card-text>
-                  <p class="animated fadeIn">Recursos útiles para los estudiantes de Administración.</p>
-                  <!-- Agrega contenido sobre recursos aquí -->
-                </v-card-text>
-              </v-card>
-            </v-tab-item>
-            <v-tab-item>
-              <v-card>
-                <v-card-title class="headline text-primary">Foro</v-card-title>
-                <v-card-text>
-                  <p class="animated fadeIn">Espacio para discusión y preguntas.</p>
-                  <!-- Agrega contenido del foro aquí -->
-                </v-card-text>
-              </v-card>
-            </v-tab-item>
-            <v-tab-item>
-              <v-card>
-                <v-card-title class="headline text-primary">Tumascora</v-card-title>
-                <v-card-text>
-                  <p class="animated fadeIn">Información sobre Tumascora.</p>
-                  <!-- Agrega contenido de Tumascora aquí -->
-                </v-card-text>
-              </v-card>
-            </v-tab-item>
-          </v-tabs-items>
-        </v-col>
-      </v-row>
+      <component :is="currentComponent"></component>
     </v-container>
 
     <!-- Pie de página de contacto -->
@@ -160,36 +58,26 @@
 </template>
 
 <script>
+import HomePage from './components/HomePage.vue';
+import AboutCarrer from './components/AboutCarrer.vue';
+import SubjectsList from './components/SubjectsList.vue';
+import ResourcesList from './components/ResourcesList.vue';
+import ForumChat from './components/ForumChat.vue';
+import TuMascoraVir from './components/TuMascoraVir.vue';
+
 export default {
+  components: {
+    HomePage,
+    AboutCarrer,
+    SubjectsList,
+    ResourcesList,
+    ForumChat,
+    TuMascoraVir,
+  },
   data() {
     return {
-      tab: 0, // Variable para el manejo de tabs
-      time: new Date().toLocaleTimeString(), // Reloj
-      carouselImages: [
-        { src: 'https://via.placeholder.com/800x300?text=Carrera+Administracion+1', alt: 'Imagen 1' },
-        { src: 'https://via.placeholder.com/800x300?text=Carrera+Administracion+2', alt: 'Imagen 2' },
-        { src: 'https://via.placeholder.com/800x300?text=Carrera+Administracion+3', alt: 'Imagen 3' },
-      ],
-      infoCards: [
-        {
-          title: 'Información General',
-          content: 'Descripción general de la carrera.',
-          details: 'Detalles adicionales sobre la carrera y sus requisitos.',
-          show: false,
-        },
-        {
-          title: 'Salidas Profesionales',
-          content: 'Posibilidades de trabajo tras graduarse.',
-          details: 'Las salidas incluyen: administración, recursos humanos, finanzas, etc.',
-          show: false,
-        },
-        {
-          title: 'Requisitos de Ingreso',
-          content: 'Requisitos para ser admitido en la carrera.',
-          details: 'Requiere un diploma de secundaria y una entrevista.',
-          show: false,
-        },
-      ],
+      tab: 0, // Control de pestañas
+      currentComponent: 'HomePage', // Componente inicial actualizado
       contactDialog: false,
       contactName: '',
       contactEmail: '',
@@ -197,24 +85,6 @@ export default {
     };
   },
   methods: {
-    goToHome() {
-      this.tab = 0; // Cambiar a la pestaña de Inicio
-    },
-    goToAbout() {
-      this.tab = 1; // Cambiar a la pestaña de Sobre la Carrera
-    },
-    goToSubjects() {
-      this.tab = 2; // Cambiar a la pestaña de Oferta de Materias
-    },
-    goToResources() {
-      this.tab = 3; // Cambiar a la pestaña de Recursos
-    },
-    goToForum() {
-      this.tab = 4; // Cambiar a la pestaña de Foro
-    },
-    goToTumascora() {
-      this.tab = 5; // Cambiar a la pestaña de Tumascora
-    },
     openContactDialog() {
       this.contactDialog = true;
     },
@@ -231,17 +101,9 @@ export default {
       });
     },
   },
-  mounted() {
-    // Actualiza el reloj cada segundo
-    setInterval(() => {
-      this.time = new Date().toLocaleTimeString();
-    }, 1000);
-  },
 };
 </script>
 
 <style scoped>
-.animated {
-  animation-duration: 1s;
-}
+/* Estilos personalizados */
 </style>
