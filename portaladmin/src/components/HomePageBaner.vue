@@ -325,6 +325,7 @@
     background: url(https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)
         center center / cover;
     display: flex;
+    
     align-items: center;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; /* Implementación de la fuente */
 }
@@ -353,7 +354,7 @@
     top: 0;
     transition: 0.5s cubic-bezier(0.19, 1, 0.22, 1);
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; /* Implementación de la fuente */
-    font-size: 60px; /* Tamaño de la fuente, ajústalo según sea necesario */
+    font-size: 100px; /* Tamaño de la fuente, ajústalo según sea necesario */
     color: white;  /* Color del texto */
     
     /* Efecto de borde brillante azul */
@@ -362,6 +363,79 @@
             0 0 10px #003F88,   /* Brillo más difuso */
             0 0 20px #003F88,   /* Brillo aún más difuso */
             0 0 40px #003F88;   /* Brillo máximo */
+}
+
+/* Estilos específicos para dispositivos móviles */
+@media screen and (max-width: 768px) {
+    .main-content {
+        height: auto; /* Ajusta la altura automáticamente */
+        overflow-y: auto;
+        padding: 1em;
+        height: 110px;
+    }
+
+    .concept {
+        height: auto; /* Asegura que el contenedor se ajuste al contenido */
+        padding: 2em; /* Reduce el padding para pantallas pequeñas */
+    }
+
+    h1 {
+        font-size: 24px; /* Reduce el tamaño de la fuente */
+        letter-spacing: 5px; /* Ajusta el espacio entre letras */
+        text-shadow: 0 0 10px #003F88; /* Mantén el brillo */
+    }
+
+    .concept-one {
+        height: 110px; /* Permite que el contenedor se adapte al contenido */
+        padding: 1em; /* Reduce el padding en pantallas pequeñas */
+        display: flex;
+        flex-direction: column; /* Asegura que los elementos se apilen verticalmente */
+        align-items: center; /* Centra los elementos dentro del contenedor */
+        text-align: center; /* Centra el texto */
+    }
+
+    .concept-one h1 {
+        font-size: 20px; /* Reduce el tamaño de la fuente */
+        letter-spacing: 3px; /* Ajusta el espaciado entre letras */
+        margin-bottom: 1em; /* Añade espacio inferior */
+    }
+
+    .concept-one .hover {
+        height: 40px; /* Reduce la altura de las áreas de hover */
+        width: 80%; /* Asegura que ocupen menos espacio horizontal */
+        margin: 5px 0; /* Añade espacio entre las áreas */
+    }
+
+    .concept-one .word {
+        max-width: 100%; /* Asegura que no desborde el contenedor */
+        flex-wrap: wrap; /* Permite que el contenido se divida en múltiples líneas */
+        justify-content: center;
+    }
+    .concept-three h1 {
+        font-size: 20px;
+        text-shadow: none; /* Opcional: menos brillo en pantallas pequeñas */
+    }
+
+    .concept-two .hover h1 {
+        font-size: 30px;
+        -webkit-text-stroke: 1px #fff; /* Ajusta el grosor del contorno */
+    }
+
+    .concept .hover {
+        height: 50px; /* Reduce el tamaño de las áreas de hover */
+        margin: 5px; /* Añade espacio entre elementos */
+    }
+
+    .word {
+        flex-wrap: wrap; /* Permite que las letras se adapten en múltiples líneas */
+        max-width: 100%; /* Ocupa todo el ancho de la pantalla */
+        justify-content: center; /* Centra los elementos */
+    }
+}
+@media screen and (max-width: 768px) {
+    .concept-five .word span {
+        font-size: 20px; /* Ajusta el tamaño solo en dispositivos móviles */
+    }
 }
 
 
