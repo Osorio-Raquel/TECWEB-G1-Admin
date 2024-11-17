@@ -1,4 +1,6 @@
 <template>
+  <head><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  </head>
   <div>
     <!-- Barra de navegación -->
     <div class="header-page">
@@ -34,6 +36,11 @@
         </button>
       </div>
 
+            <!-- Botón de Login -->
+            <button class="login-button" @click="goToLogin">
+        <i class="fas fa-user-circle"></i> Login
+      </button>
+
       <!-- Icono de menú (para pantallas pequeñas) -->
       <button class="menu-toggle" @click="toggleMenu">☰</button>
     </div>
@@ -56,6 +63,7 @@ import SubjectsList from './SubjectsList.vue';
 import ResourcesList from './ResourcesList.vue';
 import Forum from './ForumChat.vue';
 import TuMascota from './TuMascota.vue';
+import LoginPage from './LoginPage.vue';
 
 export default {
   name: "HeaderPage",
@@ -67,6 +75,7 @@ export default {
     ResourcesList,
     Forum,
     TuMascota,
+    LoginPage,
   },
   data() {
     return {
@@ -89,6 +98,9 @@ export default {
     },
     toggleMenu() {
       this.menuOpen = !this.menuOpen; // Cambia el estado del menú
+    },
+    goToLogin() {
+      this.currentComponent = "LoginPage"; // Navega al componente LoginPage
     },
   },
 };
@@ -212,8 +224,33 @@ export default {
   margin-top: 110px; /* Añadimos margen superior para dejar espacio */
 }
 
+/* Estilo para el botón de login */
+.login-button {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #00509D;
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 12px;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.login-button i {
+  margin-right: 20px;
+  font-size: 18px; /* Ajusta el tamaño del ícono */
+}
+
+.login-button:hover {
+  background-color: #1479EA;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+
 /* Media Queries */
-@media (max-width: 768px) {
+@media (max-width: 1400px) {
   .button-nav {
     display: none; /* Ocultar los botones en pantallas pequeñas */
     flex-direction: column;
