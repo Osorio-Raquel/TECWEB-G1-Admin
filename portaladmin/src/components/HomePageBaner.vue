@@ -141,7 +141,7 @@
         text-transform: uppercase;
         scroll-snap-type: y mandatory;
         position: relative;
-        height: 80vh;
+        height: 60vh;
         overflow-y: scroll;
         font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     }
@@ -162,14 +162,14 @@
     .concept {
         position: relative;
         padding: 5em;
-        height: 80vh;
+        height: 60vh;
         overflow: hidden;
         scroll-snap-align: center;
         &:before {
             content: "";
             position: absolute;
             width: 100%;
-            height: 100%;
+            height: 60vh;
             top: 0;
             left: 0;
             background: radial-gradient(rgba(0, 0, 0, 0.3), transparent);
