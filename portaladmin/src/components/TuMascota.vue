@@ -1,6 +1,6 @@
 <template>
     <HeaderPage />
-    <h1>Resources</h1>
+    <h1>Tu mascoa</h1>
 </template>
 
 <script>

@@ -1,11 +1,13 @@
 import { createApp } from 'vue';
 import App from './App.vue';
-import { createVuetify } from 'vuetify';
-import 'vuetify/styles'; // Importar estilos de Vuetify
+import axios from 'axios';
+import router from './router';
+import vuetify from './plugins/vuetify'
 
+const app = createApp(App);
 
-const vuetify = createVuetify();
+app.config.globalProperties.$axios = axios;
 
-createApp(App)
-  .use(vuetify)
-  .mount('#app');
+app.mount('#app');
+app.use(router);
+app.use(vuetify);
