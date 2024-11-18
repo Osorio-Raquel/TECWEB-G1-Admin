@@ -1,18 +1,9 @@
 <template>
-    <HeaderPage />
     <h1>About carrer</h1>
 </template>
 
 <script>
-import HeaderPage from './HeaderPage.vue';
 
-
-export default {
-  name: 'HomePage',
-  components: {
-    HeaderPage
-  }
-}
 </script>
 
 <style scoped>
