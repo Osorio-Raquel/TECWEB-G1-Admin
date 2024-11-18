@@ -4,6 +4,7 @@
     <IntroductionBanner />
     <CareerOpportunities />
     <InnovationHighlights />
+    <StudentsOp /> <!-- Aquí se incluye el carrusel de opiniones -->
   </div>
 </template>
 
@@ -12,6 +13,7 @@ import HomePageBanner from './HomePageBaner.vue';
 import IntroductionBanner from './IntroductionBanner.vue';
 import CareerOpportunities from './CareerOpportunities.vue';
 import InnovationHighlights from './InnovationHighlights.vue';
+import StudentsOp from './StudentsOp.vue'; // Importamos el componente StudentsOp
 
 export default {
   name: 'HomePage',
@@ -20,6 +22,11 @@ export default {
     IntroductionBanner,
     CareerOpportunities,
     InnovationHighlights,
+    StudentsOp, // Registramos el componente StudentsOp
   },
 };
 </script>
+
+<style scoped>
+/* Aquí pueden ir estilos generales para la página de inicio si es necesario */
+</style>
