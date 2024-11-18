@@ -1,13 +1,13 @@
 <template>
-  <v-sheet width="100%" height="500">
+  <v-sheet width="100%">
   <v-img 
         src="https://images.pexels.com/photos/8386722/pexels-photo-8386722.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
         max-height="500"
         cover
         gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.7)"
     >
-    <div class="text-center banner text-sm-h2">
-      <h1>Oferta de<br/>materias</h1>
+    <div class="text-center">
+      <h1 class="responsive-h1">Oferta de<br/>materias</h1>
     </div>
   </v-img>    
 </v-sheet>
@@ -63,23 +63,23 @@ name: "SubjectsList",
 data(){
   return{
     subjects: [
-      {sigla: "ADM-113", nombre: "Administración I", img: "https://via.placeholder.com/100?text=ADM-113", descr: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend tincidunt felis nec vestibulum. Integer bibendum elit sed risus ullamcorper, non semper massa congue. Duis."},
-      {sigla: "ADM-114", nombre: "Administración II", img: "https://via.placeholder.com/100?text=ADM-114", descr: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend tincidunt felis nec vestibulum. Integer bibendum elit sed risus ullamcorper, non semper massa congue. Duis."},
-      {sigla: "ADM-182", nombre: "Proceso de Método Científico", img: "https://via.placeholder.com/100?text=ADM-182", descr: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend tincidunt felis nec vestibulum. Integer bibendum elit sed risus ullamcorper, non semper massa congue. Duis."},
-      {sigla: "ADM-224", nombre: "Gestión del Talento Humano", img: "https://via.placeholder.com/100?text=ADM-224", descr: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend tincidunt felis nec vestibulum. Integer bibendum elit sed risus ullamcorper, non semper massa congue. Duis."},
-      {sigla: "ADM-265", nombre: "Gestión de Procesos", img: "https://via.placeholder.com/100?text=ADM-265", descr: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend tincidunt felis nec vestibulum. Integer bibendum elit sed risus ullamcorper, non semper massa congue. Duis."},
-      {sigla: "ADM-225", nombre: "Comportamiento Organizacional", img: "https://via.placeholder.com/100?text=ADM-225", descr: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend tincidunt felis nec vestibulum. Integer bibendum elit sed risus ullamcorper, non semper massa congue. Duis."},
-      {sigla: "ADM-266", nombre: "Gerencia de Operaciones y Tecnología", img: "https://via.placeholder.com/100?text=ADM-266", descr: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend tincidunt felis nec vestibulum. Integer bibendum elit sed risus ullamcorper, non semper massa congue. Duis."},
-      {sigla: "ADM-226", nombre: "Desarrollo Organizacional", img: "https://via.placeholder.com/100?text=ADM-226", descr: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend tincidunt felis nec vestibulum. Integer bibendum elit sed risus ullamcorper, non semper massa congue. Duis."},
-      {sigla: "ADM-254", nombre: "Taller de Innovación Digital", img: "https://via.placeholder.com/100?text=ADM-254", descr: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend tincidunt felis nec vestibulum. Integer bibendum elit sed risus ullamcorper, non semper massa congue. Duis."},
-      {sigla: "ADM-255", nombre: "Emprendimientos y Startup", img: "https://via.placeholder.com/100?text=ADM-255", descr: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend tincidunt felis nec vestibulum. Integer bibendum elit sed risus ullamcorper, non semper massa congue. Duis."},
-      {sigla: "ADM-268", nombre: "Ciencia de Datos y Toma de Decisiones", img: "https://via.placeholder.com/100?text=ADM-268", descr: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend tincidunt felis nec vestibulum. Integer bibendum elit sed risus ullamcorper, non semper massa congue. Duis."},
-      {sigla: "ADM-282", nombre: "Ética Profesional", img: "https://via.placeholder.com/100?text=ADM-282", descr: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend tincidunt felis nec vestibulum. Integer bibendum elit sed risus ullamcorper, non semper massa congue. Duis."},
-      {sigla: "ADM-312", nombre: "Dirección Estratégica I", img: "https://via.placeholder.com/100?text=ADM-312", descr: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend tincidunt felis nec vestibulum. Integer bibendum elit sed risus ullamcorper, non semper massa congue. Duis."},
-      {sigla: "ADM-321", nombre: "Taller de Habilidades Blandas", img: "https://via.placeholder.com/100?text=ADM-321", descr: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend tincidunt felis nec vestibulum. Integer bibendum elit sed risus ullamcorper, non semper massa congue. Duis."},
-      {sigla: "ADM-313", nombre: "Diección Estratégica II", img: "https://via.placeholder.com/100?text=ADM-313", descr: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend tincidunt felis nec vestibulum. Integer bibendum elit sed risus ullamcorper, non semper massa congue. Duis."},
-      {sigla: "ADM-353", nombre: "Administración de Proyectos", img: "https://via.placeholder.com/100?text=ADM-353", descr: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend tincidunt felis nec vestibulum. Integer bibendum elit sed risus ullamcorper, non semper massa congue. Duis."},
-      {sigla: "ADM-382", nombre: "Práctica Preprofesional", img: "https://via.placeholder.com/100?text=ADM-382", descr: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend tincidunt felis nec vestibulum. Integer bibendum elit sed risus ullamcorper, non semper massa congue. Duis."},
+      {sigla: "ADM-113", nombre: "Administración I", img: "https://via.placeholder.com/500?text=ADM-113", descr: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend tincidunt felis nec vestibulum. Integer bibendum elit sed risus ullamcorper, non semper massa congue. Duis."},
+      {sigla: "ADM-114", nombre: "Administración II", img: "https://via.placeholder.com/500?text=ADM-114", descr: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend tincidunt felis nec vestibulum. Integer bibendum elit sed risus ullamcorper, non semper massa congue. Duis."},
+      {sigla: "ADM-182", nombre: "Proceso de Método Científico", img: "https://via.placeholder.com/500?text=ADM-182", descr: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend tincidunt felis nec vestibulum. Integer bibendum elit sed risus ullamcorper, non semper massa congue. Duis."},
+      {sigla: "ADM-224", nombre: "Gestión del Talento Humano", img: "https://via.placeholder.com/500?text=ADM-224", descr: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend tincidunt felis nec vestibulum. Integer bibendum elit sed risus ullamcorper, non semper massa congue. Duis."},
+      {sigla: "ADM-265", nombre: "Gestión de Procesos", img: "https://via.placeholder.com/500?text=ADM-265", descr: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend tincidunt felis nec vestibulum. Integer bibendum elit sed risus ullamcorper, non semper massa congue. Duis."},
+      {sigla: "ADM-225", nombre: "Comportamiento Organizacional", img: "https://via.placeholder.com/500?text=ADM-225", descr: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend tincidunt felis nec vestibulum. Integer bibendum elit sed risus ullamcorper, non semper massa congue. Duis."},
+      {sigla: "ADM-266", nombre: "Gerencia de Operaciones y Tecnología", img: "https://via.placeholder.com/500?text=ADM-266", descr: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend tincidunt felis nec vestibulum. Integer bibendum elit sed risus ullamcorper, non semper massa congue. Duis."},
+      {sigla: "ADM-226", nombre: "Desarrollo Organizacional", img: "https://via.placeholder.com/500?text=ADM-226", descr: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend tincidunt felis nec vestibulum. Integer bibendum elit sed risus ullamcorper, non semper massa congue. Duis."},
+      {sigla: "ADM-254", nombre: "Taller de Innovación Digital", img: "https://via.placeholder.com/500?text=ADM-254", descr: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend tincidunt felis nec vestibulum. Integer bibendum elit sed risus ullamcorper, non semper massa congue. Duis."},
+      {sigla: "ADM-255", nombre: "Emprendimientos y Startup", img: "https://via.placeholder.com/500?text=ADM-255", descr: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend tincidunt felis nec vestibulum. Integer bibendum elit sed risus ullamcorper, non semper massa congue. Duis."},
+      {sigla: "ADM-268", nombre: "Ciencia de Datos y Toma de Decisiones", img: "https://via.placeholder.com/500?text=ADM-268", descr: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend tincidunt felis nec vestibulum. Integer bibendum elit sed risus ullamcorper, non semper massa congue. Duis."},
+      {sigla: "ADM-282", nombre: "Ética Profesional", img: "https://via.placeholder.com/500?text=ADM-282", descr: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend tincidunt felis nec vestibulum. Integer bibendum elit sed risus ullamcorper, non semper massa congue. Duis."},
+      {sigla: "ADM-312", nombre: "Dirección Estratégica I", img: "https://via.placeholder.com/500?text=ADM-312", descr: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend tincidunt felis nec vestibulum. Integer bibendum elit sed risus ullamcorper, non semper massa congue. Duis."},
+      {sigla: "ADM-321", nombre: "Taller de Habilidades Blandas", img: "https://via.placeholder.com/500?text=ADM-321", descr: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend tincidunt felis nec vestibulum. Integer bibendum elit sed risus ullamcorper, non semper massa congue. Duis."},
+      {sigla: "ADM-313", nombre: "Diección Estratégica II", img: "https://via.placeholder.com/500?text=ADM-313", descr: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend tincidunt felis nec vestibulum. Integer bibendum elit sed risus ullamcorper, non semper massa congue. Duis."},
+      {sigla: "ADM-353", nombre: "Administración de Proyectos", img: "https://via.placeholder.com/500?text=ADM-353", descr: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend tincidunt felis nec vestibulum. Integer bibendum elit sed risus ullamcorper, non semper massa congue. Duis."},
+      {sigla: "ADM-382", nombre: "Práctica Preprofesional", img: "https://via.placeholder.com/500?text=ADM-382", descr: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend tincidunt felis nec vestibulum. Integer bibendum elit sed risus ullamcorper, non semper massa congue. Duis."},
     ],
     reveal: [false],
   }
@@ -103,15 +103,22 @@ methods: {
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Funnel+Display:wght@300..800&family=Markazi+Text:wght@400..700&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Funnel+Display:wght@300..800&family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Markazi+Text:wght@400..700&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap');
 
-.banner{
-height: 500px;
-h1{
-  padding-top: 9%;
+.responsive-h1{
   font-size:70px;
   font-family: "Markazi Text";
   color: white;
   line-height: 1.1;
+  padding-top: 10%;
 }
+
+@media only screen and (max-width: 600px) {
+  .responsive-h1 {
+    font-size:40px;
+    font-family: "Markazi Text";
+    color: white;
+    line-height: 1;
+    padding-top: 15%;
+  }
 }
 
 .card-title{
