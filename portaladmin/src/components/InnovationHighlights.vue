@@ -87,7 +87,7 @@ export default {
 .highlight-text h3 {
   font-size: 1.4rem;
   font-weight: bold;
-  color: #ffe600;
+  color: #ffffff;
   text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);
 }
 

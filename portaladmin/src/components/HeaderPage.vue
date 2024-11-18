@@ -252,7 +252,7 @@ export default {
 
 
 /* Media Queries */
-@media (max-width: 768px) {
+@media (max-width: 1068px) {
   .button-nav {
     display: none; /* Ocultar los botones en pantallas pequeñas */
     flex-direction: column;

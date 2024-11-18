@@ -56,15 +56,15 @@ h1 {
 }
 
 .red {
-  background-color: #ff5f57;
+  background-color: #012E40;
 }
 
 .yellow {
-  background-color: #ffbd2e;
+  background-color: #024959;
 }
 
 .green {
-  background-color: #27c93f;
+  background-color: #026773;
 }
 
 .browser-iframe {
