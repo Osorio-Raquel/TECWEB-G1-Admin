@@ -99,7 +99,7 @@
         },
         forumSections: [
           {
-            name: 'Tecnología',
+            name: 'Pasantias',
             posts: [
               {
                 user: 'Alice',
@@ -129,15 +129,15 @@
             ],
           },
           {
-            name: 'Deportes',
+            name: 'Intercambios',
             posts: [],
           },
           {
-            name: 'Cine',
+            name: 'Actividades',
             posts: [],
           },
           {
-            name: 'Música',
+            name: 'Aliados',
             posts: [],
           },
         ],
