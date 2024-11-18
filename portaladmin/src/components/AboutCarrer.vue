@@ -1,13 +1,13 @@
 <template>
-  <v-sheet width="100%" height="500">
+  <v-sheet width="100%">
     <v-img 
           src="https://images.pexels.com/photos/1367276/pexels-photo-1367276.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
           max-height="500"
           cover
           gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.7)"
       >
-      <div class="banner mt-10 ml-16 text-sm-h2">
-        <h1>Lidera proyectos<br/>Toma decisiones<br/>Crea oportunidades</h1>
+      <div class="mt-10 ml-16">
+        <h1 class="responsive-h1">Lidera proyectos<br/>Toma decisiones<br/>Crea oportunidades</h1>
       </div>
     </v-img>    
   </v-sheet>
@@ -237,21 +237,20 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Funnel+Display:wght@300..800&family=Markazi+Text:wght@400..700&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Funnel+Display:wght@300..800&family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Markazi+Text:wght@400..700&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap');
 
-.banner{
-  height: 500px;
-  h1{
-    font-size:70px;
-    font-family: "Markazi Text";
-    color: white;
-    line-height: 1.1;
-  }
-  h2{
-  font-size:30px;
+.responsive-h1{
+  font-size:70px;
   font-family: "Markazi Text";
   color: white;
-  line-height: 1;
+  line-height: 1.1;
 }
 
+@media only screen and (max-width: 600px) {
+  .responsive-h1 {
+    font-size:40px;
+    font-family: "Markazi Text";
+    color: white;
+    line-height: 1;
+  }
 }
 
 .title{
