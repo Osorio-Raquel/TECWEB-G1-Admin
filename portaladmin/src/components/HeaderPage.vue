@@ -174,6 +174,7 @@ export default {
 
 /* Contenedor de los botones del menú */
 .button-nav {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   display: flex;
   gap: 15px;
 }
@@ -184,11 +185,12 @@ export default {
   background-color: transparent;
   border: none;
   color: white;
-  font-size: 16px;
+  font-size: 17px;
   cursor: pointer;
   transition: background-color 0.3s;
   white-space: nowrap; /* Evita que el texto se divida */
   border-radius: 12px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .nav-button.active {

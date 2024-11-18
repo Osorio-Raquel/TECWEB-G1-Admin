@@ -1,23 +1,32 @@
 <template>
-  <HomePageBanner /> <!-- Asegúrate de que este componente exista y se importe correctamente -->
-
+  <div>
+    <HomePageBanner />
+    <IntroductionBanner />
+    <CareerOpportunities />
+    <InnovationHighlights />
+    <StudentsOp /> <!-- Aquí se incluye el carrusel de opiniones -->
+  </div>
 </template>
 
 <script>
-import HomePageBanner from './HomePageBaner.vue'; // Importa el componente si no lo has hecho aún
+import HomePageBanner from './HomePageBaner.vue';
+import IntroductionBanner from './IntroductionBanner.vue';
+import CareerOpportunities from './CareerOpportunities.vue';
+import InnovationHighlights from './InnovationHighlights.vue';
+import StudentsOp from './StudentsOp.vue'; // Importamos el componente StudentsOp
 
 export default {
-  name: 'HomePage', // El nombre de tu componente
+  name: 'HomePage',
   components: {
     HomePageBanner,
+    IntroductionBanner,
+    CareerOpportunities,
+    InnovationHighlights,
+    StudentsOp, // Registramos el componente StudentsOp
   },
 };
 </script>
 
 <style scoped>
-
-/* Asegúrate de darle un margen superior al contenido para que no quede oculto detrás del header fijo */
-.HomePageBanner {
-  margin-top: 80px; /* Ajusta este valor según el tamaño de tu Header */
-}
+/* Aquí pueden ir estilos generales para la página de inicio si es necesario */
 </style>
