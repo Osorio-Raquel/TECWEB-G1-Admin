@@ -15,29 +15,19 @@
   </template>
   
   <script>
+  import Login from "@/services/login";
+
   export default {
     name: "LoginPage",
     methods: {
-      async loginWithGoogle() {
-        try {
-          const response = await fetch("https://tu-api.com/google-login", {
-            method: "GET",
-            credentials: "include",
-          });
-          if (!response.ok) {
-            throw new Error("Error en la autenticación");
-          }
-          const data = await response.json();
-          console.log("Usuario autenticado:", data);
-          alert("Inicio de sesión exitoso");
-        } catch (error) {
-          console.error("Error al iniciar sesión:", error);
-          alert("Error al autenticar con Google");
-        }
+      loginWithGoogle() {
+        Login.loginWithGoogle(); 
+        Login.handleLoginResponse();
       },
     },
   };
-  </script>
+</script>
+
   
   <style scoped>
   .login-page {
