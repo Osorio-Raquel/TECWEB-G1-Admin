@@ -87,6 +87,7 @@
             :elevation="isHovering ? 10 : 3"
             v-bind="props"
             @click="openInNewTab('https://lpz.ucb.edu.bo/inscripciones-estudiantes-nuevos')" block>¡Inscríbete ahora!
+            block
           </v-btn>
         </v-hover>
       </v-col>
@@ -176,6 +177,7 @@
 </template>
 
 <script>export default{
+  
   name: "AboutCarrer",
   data (){
     return{
