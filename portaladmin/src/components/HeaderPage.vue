@@ -65,6 +65,8 @@ import ResourcesList from './ResourcesList.vue';
 import Forum from './ForumChat.vue';
 import TuMascota from './TuMascota.vue';
 import LoginPage from './LoginPage.vue';
+import loginService from "@/services/login";
+import Swal from 'sweetalert2';
 
 export default {
   name: "HeaderPage",
@@ -90,7 +92,7 @@ export default {
         { label: "TuMascota", component: "TuMascota" },
       ],
       menuOpen: false, // Estado del menú (abierto o cerrado)
-      userName: localStorage.getItem('name'), // Obtiene el nombre del usuario del localStorage
+      userName: sessionStorage.getItem('name'), // Obtiene el nombre del usuario del localStorage
     };
   },
   methods: {
@@ -102,7 +104,24 @@ export default {
       this.menuOpen = !this.menuOpen; // Cambia el estado del menú
     },
     goToLogin() {
-      this.currentComponent = "LoginPage"; // Navega al componente LoginPage
+      let userName = sessionStorage.getItem('name');
+      if (!userName) {
+        this.currentComponent = "LoginPage"; // Navega al componente LoginPage
+      } else {
+        // Si ya está logueado, cerrar sesión
+        loginService.logout(); // Llama al servicio de logout
+        this.userName = null; // Actualiza la variable userName
+        sessionStorage.removeItem('name'); // Limpia la sessionStorage
+        this.currentComponent = "HomePage"; // Vuelve al componente principal
+        Swal.fire({
+          title: 'Sesión cerrada',
+          text: 'Has cerrado sesión exitosamente.',
+          icon: 'success',
+          confirmButtonText: 'OK'
+        }).then(() => {
+          location.reload(); // Refresca la página para asegurarse de que el estado se actualiza
+        });
+      }
     },
   },
 };

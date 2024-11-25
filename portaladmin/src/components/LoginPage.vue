@@ -23,7 +23,6 @@ export default {
     async handleLogin() {
       try {
         await loginService.loginWithGoogle();
-        // El flujo redirige automáticamente a Google
         await loginService.fetchUserData();
       } catch (error) {
         console.error("Login failed:", error);

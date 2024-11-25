@@ -5,7 +5,7 @@ const baseURL = "http://localhost:8080/api/v1/materias";
 // Obtiene todas las materias desde el backend
 async function getMaterias() {
   try {
-    const token = localStorage.getItem("access_token"); // Obtiene el token desde localStorage
+    const token = sessionStorage.getItem("access_token"); // Obtiene el token desde localStorage
     if (!token) {
       console.error("Access token not found!");
       return null;

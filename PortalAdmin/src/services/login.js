@@ -6,8 +6,14 @@ async function loginWithGoogle() {
     window.location.href = `${baseURL}/oauth2/authorization/google`;
   } catch (error) {
     console.error("Error during login:", error);
-    throw error;
   }
+
+}
+
+function checkIfLoggedIn() {
+  // Verifica si el nombre del usuario está almacenado en sessionStorage
+  const userName = sessionStorage.getItem('name');
+  return userName !== null; // Si hay un nombre, el usuario está autenticado
 }
 
 // Recupera los datos del usuario autenticado
@@ -20,9 +26,9 @@ async function fetchUserData() {
       .then(response => response.json())
       .then(data => {
           console.log(data);
-          localStorage.setItem("access_token", data.access_token);
-          localStorage.setItem("name", data.name);
-          localStorage.setItem("email", data.email);
+          sessionStorage.setItem("access_token", data.access_token);
+          sessionStorage.setItem("name", data.name);
+          sessionStorage.setItem("email", data.email);
       })
       
 }
@@ -31,7 +37,15 @@ catch(error) {
 }
 }
 
+async function logout() {
+  sessionStorage.clear(); // Limpia todos los datos del localStorage
+  console.log("Sesión cerrada y datos limpiados.");
+}
+
+
 export default {
   loginWithGoogle,
   fetchUserData,
+  logout,
+  checkIfLoggedIn,
 };
