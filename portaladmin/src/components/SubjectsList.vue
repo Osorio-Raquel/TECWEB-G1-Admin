@@ -17,8 +17,7 @@
     <v-col cols="12" md="4" v-for="(subject, index) in subjects" :key="index">
       <v-card class="slide-in" elevation="3" hover>
         <v-img :src="subject.img" :aspect-ratio="4/3" cover></v-img>
-        <v-card-title class="card-title mt-2">{{ subject.sigla }}</v-card-title>
-        <v-card-subtitle class="card-subtitle mb-4">{{ subject.nombre }}</v-card-subtitle>
+        <v-card-title class="card-subtitle mb-4">{{ subject.nombre }}</v-card-title>
         <v-card-actions>
           <v-btn
             color="secondary"
@@ -58,30 +57,32 @@
 </template>
 
 <script>
+
+import subjectsData from "@/services/subjects";
+
 export default{
 name: "SubjectsList",
 data(){
   return{
-    subjects: [
-      {sigla: "ADM-113", nombre: "Administración I", img: "https://via.placeholder.com/500?text=ADM-113", descr: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend tincidunt felis nec vestibulum. Integer bibendum elit sed risus ullamcorper, non semper massa congue. Duis."},
-      {sigla: "ADM-114", nombre: "Administración II", img: "https://via.placeholder.com/500?text=ADM-114", descr: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend tincidunt felis nec vestibulum. Integer bibendum elit sed risus ullamcorper, non semper massa congue. Duis."},
-      {sigla: "ADM-182", nombre: "Proceso de Método Científico", img: "https://via.placeholder.com/500?text=ADM-182", descr: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend tincidunt felis nec vestibulum. Integer bibendum elit sed risus ullamcorper, non semper massa congue. Duis."},
-      {sigla: "ADM-224", nombre: "Gestión del Talento Humano", img: "https://via.placeholder.com/500?text=ADM-224", descr: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend tincidunt felis nec vestibulum. Integer bibendum elit sed risus ullamcorper, non semper massa congue. Duis."},
-      {sigla: "ADM-265", nombre: "Gestión de Procesos", img: "https://via.placeholder.com/500?text=ADM-265", descr: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend tincidunt felis nec vestibulum. Integer bibendum elit sed risus ullamcorper, non semper massa congue. Duis."},
-      {sigla: "ADM-225", nombre: "Comportamiento Organizacional", img: "https://via.placeholder.com/500?text=ADM-225", descr: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend tincidunt felis nec vestibulum. Integer bibendum elit sed risus ullamcorper, non semper massa congue. Duis."},
-      {sigla: "ADM-266", nombre: "Gerencia de Operaciones y Tecnología", img: "https://via.placeholder.com/500?text=ADM-266", descr: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend tincidunt felis nec vestibulum. Integer bibendum elit sed risus ullamcorper, non semper massa congue. Duis."},
-      {sigla: "ADM-226", nombre: "Desarrollo Organizacional", img: "https://via.placeholder.com/500?text=ADM-226", descr: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend tincidunt felis nec vestibulum. Integer bibendum elit sed risus ullamcorper, non semper massa congue. Duis."},
-      {sigla: "ADM-254", nombre: "Taller de Innovación Digital", img: "https://via.placeholder.com/500?text=ADM-254", descr: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend tincidunt felis nec vestibulum. Integer bibendum elit sed risus ullamcorper, non semper massa congue. Duis."},
-      {sigla: "ADM-255", nombre: "Emprendimientos y Startup", img: "https://via.placeholder.com/500?text=ADM-255", descr: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend tincidunt felis nec vestibulum. Integer bibendum elit sed risus ullamcorper, non semper massa congue. Duis."},
-      {sigla: "ADM-268", nombre: "Ciencia de Datos y Toma de Decisiones", img: "https://via.placeholder.com/500?text=ADM-268", descr: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend tincidunt felis nec vestibulum. Integer bibendum elit sed risus ullamcorper, non semper massa congue. Duis."},
-      {sigla: "ADM-282", nombre: "Ética Profesional", img: "https://via.placeholder.com/500?text=ADM-282", descr: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend tincidunt felis nec vestibulum. Integer bibendum elit sed risus ullamcorper, non semper massa congue. Duis."},
-      {sigla: "ADM-312", nombre: "Dirección Estratégica I", img: "https://via.placeholder.com/500?text=ADM-312", descr: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend tincidunt felis nec vestibulum. Integer bibendum elit sed risus ullamcorper, non semper massa congue. Duis."},
-      {sigla: "ADM-321", nombre: "Taller de Habilidades Blandas", img: "https://via.placeholder.com/500?text=ADM-321", descr: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend tincidunt felis nec vestibulum. Integer bibendum elit sed risus ullamcorper, non semper massa congue. Duis."},
-      {sigla: "ADM-313", nombre: "Diección Estratégica II", img: "https://via.placeholder.com/500?text=ADM-313", descr: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend tincidunt felis nec vestibulum. Integer bibendum elit sed risus ullamcorper, non semper massa congue. Duis."},
-      {sigla: "ADM-353", nombre: "Administración de Proyectos", img: "https://via.placeholder.com/500?text=ADM-353", descr: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend tincidunt felis nec vestibulum. Integer bibendum elit sed risus ullamcorper, non semper massa congue. Duis."},
-      {sigla: "ADM-382", nombre: "Práctica Preprofesional", img: "https://via.placeholder.com/500?text=ADM-382", descr: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eleifend tincidunt felis nec vestibulum. Integer bibendum elit sed risus ullamcorper, non semper massa congue. Duis."},
-    ],
+    subjects: [],
     reveal: [false],
+  }
+},
+async mounted() {
+  try {
+    const materias = await subjectsData.getMaterias(); // Obtiene las materias desde la API
+
+      // Mapea los datos obtenidos a la estructura de `subjects`
+      this.subjects = materias.map(materia => ({
+        nombre: materia.nombre,
+        img: `https://via.placeholder.com/500?text=${materia.nombre}`, // Genera URL de imagen
+        descr: materia.descripcion || "Descripción no disponible." // Descripción por defecto
+      }));
+
+      // Inicializa el array `reveal` con valores `false`
+      this.reveal = Array(this.subjects.length).fill(false);
+  } catch (error) {
+    console.log("Error al cargar materias: ", error );
   }
 },
 methods: {
@@ -91,6 +92,8 @@ methods: {
   showLess(index) {
     this.reveal[index] = false;
   }, 
+
+
 }
 }
 

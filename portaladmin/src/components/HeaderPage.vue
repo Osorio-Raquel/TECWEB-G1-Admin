@@ -38,7 +38,8 @@
 
             <!-- Botón de Login -->
             <button class="login-button" @click="goToLogin">
-        <i class="fas fa-user-circle"></i> Login
+        <i class="fas fa-user-circle"></i>
+        {{ userName ? userName : 'Login' }}
       </button>
 
       <!-- Icono de menú (para pantallas pequeñas) -->
@@ -89,6 +90,7 @@ export default {
         { label: "TuMascota", component: "TuMascota" },
       ],
       menuOpen: false, // Estado del menú (abierto o cerrado)
+      userName: localStorage.getItem('name'), // Obtiene el nombre del usuario del localStorage
     };
   },
   methods: {

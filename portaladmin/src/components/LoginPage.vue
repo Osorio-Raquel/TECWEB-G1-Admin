@@ -6,7 +6,7 @@
       <div class="login-container">
         <h1 class="animated-title">Bienvenido</h1>
         <p>Accede con tu cuenta de Google para continuar</p>
-        <button class="google-login" @click="loginWithGoogle">
+        <button class="google-login" @click="handleLogin">
           <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google Logo" />
           Iniciar sesión con Google
         </button>
@@ -15,17 +15,22 @@
   </template>
   
   <script>
-  import Login from "@/services/login";
+import loginService from "@/services/login";
 
-  export default {
-    name: "LoginPage",
-    methods: {
-      loginWithGoogle() {
-        Login.loginWithGoogle(); 
-        Login.handleLoginResponse();
-      },
+export default {
+  name: "LoginPage",
+  methods: {
+    async handleLogin() {
+      try {
+        await loginService.loginWithGoogle();
+        // El flujo redirige automáticamente a Google
+        await loginService.fetchUserData();
+      } catch (error) {
+        console.error("Login failed:", error);
+      }
     },
-  };
+  },
+};
 </script>
 
   
