@@ -1,29 +1,37 @@
-export default class Login {
-    static loginWithGoogle() {
-      const backendLoginUrl = "http://localhost:8080/oauth2/authorization/google";
-      window.location.href = backendLoginUrl;
-    }
+const baseURL = "http://localhost:8080";
 
-    static async handleLoginResponse() {
-    try {
-        const response = await fetch("http://localhost:8080/api/v1/personas"); // Ajusta esta URL si es necesario
-        console.log("Hasta el response");
-        if (response.ok) {
-            const userData = await response.json();
-            localStorage.setItem("user", JSON.stringify(userData));
-
-            console.log("Inicio de sesión exitoso:", userData);
-            alert(`Bienvenido, ${userData.name}`);
-        } else {
-            console.error("Error al obtener datos del usuario:", response.statusText);
-            alert("Error al iniciar sesión. Por favor, intenta de nuevo.");
-        }
-    } catch (error) {
-        console.error("Error al manejar la respuesta del inicio de sesión:", error);
-        alert("Ocurrió un error inesperado. Por favor, verifica tu conexión.");
-    }
+// Redirige al usuario para autenticarse con Google
+async function loginWithGoogle() {
+  try {
+    window.location.href = `${baseURL}/oauth2/authorization/google`;
+  } catch (error) {
+    console.error("Error during login:", error);
+    throw error;
+  }
 }
 
+// Recupera los datos del usuario autenticado
+async function fetchUserData() {
+  try {
+    fetch("http://localhost:8080/api/v1/user-info", {
+      method: "GET",
+      credentials: "include"  // Incluir las cookies de la sesión en la solicitud
+  })
+      .then(response => response.json())
+      .then(data => {
+          console.log(data);
+          localStorage.setItem("access_token", data.access_token);
+          localStorage.setItem("name", data.name);
+          localStorage.setItem("email", data.email);
+      })
       
-  }
-  
+}
+catch(error) {
+  console.error("Error al obtener la información del usuario:", error);
+}
+}
+
+export default {
+  loginWithGoogle,
+  fetchUserData,
+};
