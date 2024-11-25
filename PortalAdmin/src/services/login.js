@@ -31,10 +31,10 @@ async function fetchUserData() {
           sessionStorage.setItem("email", data.email);
       })
       
-}
-catch(error) {
-  console.error("Error al obtener la información del usuario:", error);
-}
+  }
+  catch(error) {
+    console.error("Error al obtener la información del usuario:", error);
+  }
 }
 
 async function logout() {
