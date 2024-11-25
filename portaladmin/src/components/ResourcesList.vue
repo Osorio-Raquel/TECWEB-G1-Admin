@@ -1,7 +1,10 @@
 <template>
-  <div class="library-container">
+  <div :class="['library-container', { 'dark-mode': isDarkMode }]">
     <div class="header">
       <h1>Explora los Recursos Más Útiles para Administración de Empresas</h1>
+      <button class="toggle-theme-button" @click="toggleTheme">
+        Cambiar a {{ isDarkMode ? "Modo Claro" : "Modo Oscuro" }}
+      </button>
     </div>
 
     <!-- Pestañas -->
@@ -38,6 +41,8 @@
     </div>
   </div>
 </template>
+
+
 
 <script>
 export default {
@@ -133,11 +138,56 @@ export default {
     selectTab(tab) {
       this.selectedTab = tab;
     },
+    toggleTheme() {
+      this.isDarkMode = !this.isDarkMode; // Alternar entre modo oscuro y claro
+    },
   },
 };
 </script>
 
-<style scoped>
+<style >
+/* Estilos para modo claro */
+.library-container {
+  padding: 2rem;
+  background: linear-gradient(to right, #e0f7fa, #ffffff);
+  color: #000;
+  border-radius: 10px;
+  text-align: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Estilos para modo oscuro */
+.library-container.dark-mode {
+  background: linear-gradient(to right, #212121, #424242);
+  color: #ffffff;
+}
+
+/* Botón de cambio de tema */
+.toggle-theme-button {
+  background: #0288d1;
+  color: #ffffff;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.toggle-theme-button:hover {
+  background: #01579b;
+}
+
+/* Estilo para el botón en modo oscuro */
+.library-container.dark-mode .toggle-theme-button {
+  background: #80deea;
+  color: #212121;
+}
+
+.library-container.dark-mode .toggle-theme-button:hover {
+  background: #4dd0e1;
+}
+
 /* Contenedor principal */
 .library-container {
   padding: 2rem;

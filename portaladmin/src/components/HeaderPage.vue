@@ -36,6 +36,8 @@
         </button>
       </div>
 
+      
+
             <!-- Botón de Login -->
             <button class="login-button" @click="goToLogin">
         <i class="fas fa-user-circle"></i>
