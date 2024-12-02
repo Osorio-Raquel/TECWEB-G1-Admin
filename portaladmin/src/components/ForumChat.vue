@@ -22,18 +22,7 @@
           <!-- Post form -->
           <div class="post-form">
   <textarea v-model="newPost.text" placeholder="Escribe tu publicación..." rows="3"></textarea>
-  
-  <!-- Botón de carga de archivo personalizado -->
-  <label for="file-input" class="custom-file-button">Seleccionar archivo</label>
-  <input 
-    id="file-input" 
-    type="file" 
-    accept="image/*" 
-    @change="handleImageUpload"
-  />
-  
-  <!-- Mostrar el nombre del archivo seleccionado -->
-  <span v-if="newPost.image" class="file-name">{{ newPost.imageName }}</span>
+ 
   
   <button @click="submitPost(forumSections[activeSectionIndex])">Publicar</button>
 </div>
@@ -42,7 +31,6 @@
           <div v-for="(post, postIndex) in forumSections[activeSectionIndex].posts" :key="postIndex" class="post">
             <div class="post-header">
               <h3>{{ post.user }} - {{ post.date }}</h3>
-              <button @click="likePost(forumSections[activeSectionIndex], postIndex)">❤️ {{ post.likes }}</button>
             </div>
             <p v-if="post.showMore">{{ post.text }}</p>
             <p v-else>{{ post.text.substring(0, 100) }}...</p>
@@ -56,9 +44,6 @@
             <div class="comments">
               <div v-for="(comment, commentIndex) in post.comments" :key="commentIndex" class="comment">
                 <p><strong>{{ comment.user }}:</strong> {{ comment.text }}</p>
-                <button @click="likeComment(forumSections[activeSectionIndex], postIndex, commentIndex)">
-                    ❤️ {{ comment.likes }}
-                </button>
                 <button @click="toggleReply(forumSections[activeSectionIndex], postIndex, commentIndex)">
                   {{ comment.showReply ? 'Ocultar respuestas' : 'Responder' }}
                 </button>
@@ -72,8 +57,6 @@
               </div>
   
               <!-- New comment form -->
-              <textarea v-model="newComment.text" placeholder="Escribe un comentario..." rows="3"></textarea>
-              <button @click="submitComment(forumSections[activeSectionIndex], postIndex)">Comentar</button>
             </div>
           </div>
         </div>
@@ -82,6 +65,11 @@
   </template>
   
   <script>
+
+import forumService from "@/services/forum";
+import commentsService from "@/services/comment";
+import usersService from "@/services/user";
+
   export default {
     name: 'ForumChat',
     data() {
@@ -99,55 +87,85 @@
         },
         forumSections: [
           {
-            name: 'Pasantias',
-            posts: [
-              {
-                user: 'Alice',
-                date: '2024-11-18',
-                text: 'La inteligencia artificial está cambiando el futuro del trabajo. ¿Qué opinan?',
-                image: 'https://images.unsplash.com/photo-1531538606174-0f90ff5dce83?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                likes: 3,
-                comments: [
-                  {
-                    user: 'Bob',
-                    text: 'Estoy de acuerdo, pero también existen desafíos éticos.',
-                    likes: 2,
-                    showReply: false,
-                    replies: [],
-                  },
-                  {
-                    user: 'Charlie',
-                    text: 'Creo que va a ser una herramienta muy poderosa.',
-                    likes: 1,
-                    showReply: false,
-                    replies: [],
-                  },
-                ],
-                showMore: false,
-              },
-              // Más publicaciones...
-            ],
-          },
-          {
-            name: 'Intercambios',
-            posts: [],
-          },
-          {
-            name: 'Actividades',
-            posts: [],
-          },
-          {
-            name: 'Aliados',
+            name: '',
+            tema: '',
             posts: [],
           },
         ],
       };
     },
+    mounted() {
+    this.fetchForums(); // Llamada automática al cargar el componente
+    },
     methods: {
+
+      async fetchForums() {
+  try {
+    const forums = await forumService.getAllForums(); // Obtener los foros
+    console.log(forums);
+    // Obtener los comentarios para cada foro y actualizar los foros con sus comentarios
+    this.forumSections = await Promise.all(forums.map(async (forum) => {
+      const forumComments = await commentsService.fetchCommentsByForumId(forum.idForo); // Obtener los comentarios para el foro actual
+
+      const formattedComments = await Promise.all(forumComments.map(async (comment) => {
+        const userName = await this.buscarUsuario(comment.idUsuario); // Espera al nombre del usuario
+
+        return {
+          user: userName, // Nombre del usuario obtenido
+          date: this.formatDate(comment.fechaHora), // Suponiendo que 'date' es la fecha del comentario
+          text: comment.texto, // Suponiendo que 'text' es el contenido del comentario
+        };
+      }));
+
+      return {
+        name: forum.nombre,
+        tema: forum.tema,
+        posts: formattedComments, // Asignamos los comentarios a 'posts'
+      };
+    }));
+
+    console.log("Foros y comentarios obtenidos:", this.forumSections); // Imprimir los foros con los comentarios
+  } catch (error) {
+    console.error("Error al obtener los foros y comentarios:", error);
+  }
+},
+
+ formatDate(dateString) {
+  const date = new Date(dateString); // Convertir el string a un objeto Date
+
+  const day = String(date.getDate()).padStart(2, '0'); // Obtener el día, asegurándose de que tenga dos dígitos
+  const month = String(date.getMonth() + 1).padStart(2, '0'); // Obtener el mes (el mes comienza desde 0, por eso se le suma 1)
+  const year = date.getFullYear(); // Obtener el año
+
+  const hours = String(date.getHours()).padStart(2, '0'); // Obtener las horas
+  const minutes = String(date.getMinutes()).padStart(2, '0'); // Obtener los minutos
+  const seconds = String(date.getSeconds()).padStart(2, '0'); // Obtener los segundos
+
+  return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`; // Retornar la fecha formateada
+},
+
+
+ async buscarUsuario(idusu){
+  try {
+    const usu = await usersService.fetchUsers();  // Obtén los usuarios desde el servicio
+    // Busca el usuario que tenga el mismo ID que idusu
+    const usuarioEncontrado = usu.find(user => user.idUsuario === idusu); // Asegúrate de que 'id' es el campo correcto
+
+    if (usuarioEncontrado) {
+      console.log("Nombre del usuario encontrado:", usuarioEncontrado.nombreGoogle);
+      return usuarioEncontrado.nombreGoogle;  // Retorna el nombre del usuario
+    } 
+  } catch (error) {
+    console.error("Error al buscar el usuario:", error);
+    return null;  // En caso de error
+  }
+},
+    
+
         submitPost(section) {
   if (this.newPost.text) {
     section.posts.unshift({ // Use `unshift` to add the new post at the beginning of the array
-      user: 'Nuevo Usuario',
+      user: sessionStorage.getItem('name'),
       date: new Date().toISOString().split('T')[0],
       text: this.newPost.text,
       image: this.newPost.image,
@@ -207,6 +225,8 @@
           section.posts[postIndex].comments[commentIndex].showReply = false;
         }
       },
+
+      
     },
   };
   </script>

@@ -16,6 +16,7 @@
   
   <script>
 import loginService from "@/services/login";
+// import users from "@/services/user";
 
 export default {
   name: "LoginPage",
@@ -24,6 +25,7 @@ export default {
       try {
         await loginService.loginWithGoogle();
         await loginService.fetchUserData();
+        // await users.getUserByEmailPrimeraVez();
       } catch (error) {
         console.error("Login failed:", error);
       }
