@@ -66,6 +66,7 @@ import SubjectsList from './SubjectsList.vue';
 import ResourcesList from './ResourcesList.vue';
 import Forum from './ForumChat.vue';
 import TuMascota from './TuMascota.vue';
+import MedalsStu from './MedalsStu.vue';
 import LoginPage from './LoginPage.vue';
 import loginService from "@/services/login";
 import Swal from 'sweetalert2';
@@ -80,6 +81,7 @@ export default {
     ResourcesList,
     Forum,
     TuMascota,
+    MedalsStu,
     LoginPage,
   },
   data() {
@@ -92,6 +94,7 @@ export default {
         { label: "Recursos", component: "ResourcesList" },
         { label: "Foro", component: "Forum" },
         { label: "TuMascota", component: "TuMascota" },
+        { label: "Medallero", component: "MedalsStu" },
       ],
       menuOpen: false, // Estado del menú (abierto o cerrado)
       userName: sessionStorage.getItem('name'), // Obtiene el nombre del usuario del localStorage
