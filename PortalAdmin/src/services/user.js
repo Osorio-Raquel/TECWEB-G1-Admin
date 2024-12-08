@@ -121,10 +121,46 @@ async function getUserByEmail() {
   }
 }
 
+async function fetchUsers() {
+    const token = sessionStorage.getItem('access_token');  // Obtener el token del sessionStorage
+  
+    // Verifica si el token existe
+    if (!token) {
+      console.error("Token de autorización no encontrado.");
+      return;
+    }
+  
+    try {
+      const response = await fetch('http://localhost:8080/api/v1/usuarios', {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${token}`,  // Incluir el token en los headers
+          'Content-Type': 'application/json',  // Asegurarse de que la respuesta esté en JSON
+        },
+      });
+  
+      // Verificar si la respuesta fue exitosa
+      if (!response.ok) {
+        throw new Error('Error al obtener los usuarios');
+      }
+  
+      // Convertir la respuesta en formato JSON
+      const data = await response.json();
+  
+      console.log("Usuarios obtenidos:", data);  // Mostrar los usuarios obtenidos
+      return data;
+    } catch (error) {
+      console.error("Error al consumir la API:", error);  // Manejo de errores
+    }
+  }
+  
+  
+
 
   
   export default {
     getUserByEmail,
     createUser,
     getUserByEmailPrimeraVez,
+    fetchUsers,
   };

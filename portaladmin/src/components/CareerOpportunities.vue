@@ -186,13 +186,13 @@ h3 {
 }
 
 p {
-  font-size: 30px;
+  font-size: 20px;
   color: #555;
 }
 
 .card-front h3,
 .card-back h3 {
-  font-size: 50px;
+  font-size: 40px;
   font-weight: bold;
   color: #fff;
   margin-bottom: 1rem;
