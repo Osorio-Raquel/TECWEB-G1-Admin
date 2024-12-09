@@ -179,7 +179,7 @@ export default {
   color: white;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   text-align: center;
-  font-size: 36px;
+  font-size: 28px;
   position: relative;  /* Se asegura de que los elementos se apilen */
   top: 0;
   left: 0;
@@ -211,11 +211,11 @@ export default {
   background-color: transparent;
   border: none;
   color: white;
-  font-size: 17px;
+  font-size: 15px;
   cursor: pointer;
   transition: background-color 0.3s;
   white-space: nowrap; /* Evita que el texto se divida */
-  border-radius: 12px;
+  border-radius: 10px;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
