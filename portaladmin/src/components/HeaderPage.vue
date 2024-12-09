@@ -93,7 +93,7 @@ export default {
         { label: "Oferta de Materias", component: "SubjectsList" },
         { label: "Recursos", component: "ResourcesList" },
         { label: "Foro", component: "Forum" },
-        { label: "TuMascota", component: "TuMascota" },
+        { label: "Tu Mascota", component: "TuMascota" },
         { label: "Medallero", component: "MedalsStu" },
       ],
       menuOpen: false, // Estado del menú (abierto o cerrado)
@@ -179,7 +179,7 @@ export default {
   color: white;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   text-align: center;
-  font-size: 28px;
+  font-size: 28 px;
   position: relative;  /* Se asegura de que los elementos se apilen */
   top: 0;
   left: 0;
@@ -258,7 +258,7 @@ export default {
   align-items: center;
   padding: 10px 20px;
   background-color: #00509D;
-  border: none;
+  border: 1px;
   color: white;
   font-size: 16px;
   cursor: pointer;
@@ -267,7 +267,7 @@ export default {
 }
 
 .login-button i {
-  margin-right: 20px;
+  margin-right: 19px;
   font-size: 18px; /* Ajusta el tamaño del ícono */
 }
 
