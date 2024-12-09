@@ -27,7 +27,43 @@ async function fetchCommentsByForumId (forumId) {
   }
 }
 
+async function crearComentario(texto, idForo, idUsuario) {
+  const url = "http://localhost:8080/api/v1/comentarios";
+  const token = sessionStorage.getItem("access_token");
+
+  // Obtener fecha y hora actual en formato ISO
+  const fechaHora = new Date().toISOString();
+
+  const comentario = {
+    texto: texto,
+    fechaHora: fechaHora,
+    idForo: idForo,
+    idUsuario: idUsuario,
+  };
+
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(comentario),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Error: ${response.status}`);
+    }
+
+    const data = await response.json();
+    console.log("Comentario creado:", data);
+  } catch (error) {
+    console.error("Error al crear el comentario:", error);
+  }
+}
+
 export default {
-    fetchCommentsByForumId,
+  fetchCommentsByForumId,
+  crearComentario,
 };
 
