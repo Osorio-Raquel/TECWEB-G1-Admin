@@ -23,7 +23,7 @@ export default {
   created() {
     // Verifica si el usuario ha iniciado sesión (puedes usar localStorage o sessionStorage)
     const userLoggedIn = sessionStorage.getItem('name'); // Ejemplo: checar sesión
-    this.currentComponent = userLoggedIn ? 'HeaderPage' : 'HeaderPageStart';
+    this.currentComponent = userLoggedIn ? 'HeaderPage': 'tuMascota' ;
   },
 };
 </script>
